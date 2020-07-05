@@ -3,15 +3,14 @@ import ReactDOM from "react-dom"
 import {List, ListItem, LinkListItem, ContentHandler, Image, BackgroundImage, useResponse} from "./base"
 
 function App(props) {
-    return <div>Hello React world</div>
-    // const [response, isLoaded, error] = useResponse("/api/content")
-    // return (
-    //     <ContentHandler contentState={[isLoaded, error]}>
-    //         <div className="content_container">
-    //             <Footer content={response[response.length - 1]}/>
-    //         </div>
-    //     </ContentHandler>
-    // )
+    const [response, isLoaded, error] = useResponse("/")
+    return (
+        <ContentHandler contentState={[isLoaded, error]}>
+            <div className="content_container">
+                <Footer content={response[response.length - 1]}/>
+            </div>
+        </ContentHandler>
+    )
 }
 
 function Footer(props) {
