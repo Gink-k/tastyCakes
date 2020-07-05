@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import {List, ListItem, LinkListItem, ContentHandler, Image, BackgroundImage, useResponse} from "./base"
 
 function App(props) {
-    const [response, isLoaded, error] = useResponse("./main.json")
+    const [response, isLoaded, error] = useResponse("./static/main.json")
     return (
         <ContentHandler contentState={[isLoaded, error]}>
             <div className="content_container">
