@@ -1,15 +1,26 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import {List, ListItem, LinkListItem, ContentHandler, Image, BackgroundImage, useResponse} from "./base"
+import {List, ListItem, LinkListItem, ContentHandler, Article, Image, BackgroundImage, useResponse} from "./base"
 
 function App(props) {
     const [response, isLoaded, error] = useResponse("./static/main.json")
     return (
         <ContentHandler contentState={[isLoaded, error]}>
             <div className="content_container">
+                <Intro content={response[0]}/>
                 <Footer content={response[response.length - 1]}/>
             </div>
         </ContentHandler>
+    )
+}
+
+function Intro(props) {
+    return (
+        <Section className="intro">
+            <article>
+                <Article {...props.content}/>
+            </article>
+        </Section>
     )
 }
 
@@ -37,7 +48,7 @@ function Section(props) {
         }
     }, [])
     return (
-        <section className={className + " section"} id={className} ref={sectionRef} {...rest} data-animate-section>
+        <section className={className + " section"} id={className} ref={sectionRef} {...rest}>
             {header}
             {children}
         </section>
