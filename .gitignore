@@ -1,2 +1,7 @@
 node_modules
-dist
+src
+.babelrc
+.babelrc
+package.json
+package-lock.json
+webpack.config.js
