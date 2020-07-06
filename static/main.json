@@ -1,7 +1,33 @@
-[
-    {
+{
+    "intro": {
         "title": "Привет, Гость!",
         "text": "Меня зовут *Имя* и я профессиональный кондитер!",
         "id": 1
+    },
+    "projects": {
+        "title": "Cakes",
+        "relatedContent": [
+            {
+                "imageName": "1.jpg",
+                "id": 1
+            },
+            {
+                "imageName": "2.jpg",
+                "id": 2
+            },
+            {
+                "imageName": "1.jpg",
+                "id": 3
+            },
+            {
+                "imageName": "2.jpg",
+                "id": 4
+            }
+        ],
+        "id": 2
+    },
+    "footer": {
+        "title": "Навигация",
+        "id": 3
     }
-]
+}
