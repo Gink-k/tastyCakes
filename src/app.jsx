@@ -7,8 +7,9 @@ function App(props) {
     return (
         <ContentHandler contentState={[isLoaded, error]}>
             <div className="content_container">
-                <Intro content={response[0]}/>
-                <Footer content={response[response.length - 1]}/>
+                <Intro content={response.intro}/>
+                <Projects content={response.projects}/>
+                <Footer content={response.footer}/>
             </div>
         </ContentHandler>
     )
@@ -22,6 +23,42 @@ function Intro(props) {
             </article>
         </Section>
     )
+}   
+
+function Projects(props) {
+    const content = props.content || {}
+    const relatedContent = content.relatedContent || []
+    const showDuration = 4000, hideAnimationDur = 2000
+    const [coming, setComing]     = React.useState(relatedContent[0])
+    const [outgoing, setOutgoing] = React.useState(null)
+    React.useEffect(() => {
+        setTimeout(showNext, showDuration + hideAnimationDur)
+    }, [coming])
+    function showNext() {
+        setOutgoing(coming)
+        setComing(getValidProject(relatedContent, coming))
+        setTimeout(() => setOutgoing(null), hideAnimationDur)
+    }
+    const style  = {"animationDuration": `${hideAnimationDur}ms`}
+    const newImg = <BackgroundImage className="new-img" name={coming.imageName} key={coming.id} style={style}/>,
+          oldImg = <BackgroundImage className="old-img" name={outgoing && outgoing.imageName} style={style}/>
+    return (
+        <Section title={content.title} className="projects">
+            <article>
+                <div>
+                    <div className="layout"/>
+                    {outgoing && oldImg}
+                    {newImg}
+                </div>
+            </article>
+        </Section>
+    )
+}
+
+function getValidProject(related_content, lastShowedProject) {
+    const lastPIndex = related_content.length - 1
+    const indexOfCurr = related_content.indexOf(lastShowedProject)
+    return indexOfCurr == lastPIndex ? related_content[0] : related_content[indexOfCurr + 1]
 }
 
 function Footer(props) {

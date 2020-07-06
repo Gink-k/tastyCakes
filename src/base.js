@@ -61,8 +61,9 @@ export function Image(props) {
 }
 
 export function BackgroundImage(props) {
-    const className = props.className && props.className + " image-div" || "image-div" 
-    return <div style={{"backgroundImage" : `url("${IMAGE_STORAGE}${props.name}")`}} className={className}></div>
+    const {className, style, _ref, ...rest} = props
+    const newClassName = className && className + " image-div" || "image-div" 
+    return <div ref={_ref} style={{"backgroundImage" : `url("${IMAGE_STORAGE}${props.name}")`, ...style}} className={newClassName} {...rest}></div>
 }
 
 export function useResponse(path) {
