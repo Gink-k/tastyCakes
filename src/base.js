@@ -1,6 +1,6 @@
 import React from "react"
 
-const IMAGE_STORAGE = "/static/images/"
+const IMAGE_STORAGE = "./static/images/"
 
 export function Logo(props) {
     return (
