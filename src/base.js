@@ -14,7 +14,7 @@ export function List(props) {
     return (
         <ul {...rest} className={className}>
             {props.items.map(value => {
-                return <ListUnit content={value} key={value.ID}/>
+                return <ListUnit content={value} key={value.id}/>
             })}
         </ul>
     )

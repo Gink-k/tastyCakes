@@ -9,6 +9,7 @@ function App(props) {
             <div className="content_container">
                 <Intro content={response.intro}/>
                 <Projects content={response.projects}/>
+                <Reviews content={response.reviews}/>
                 <Footer content={response.footer}/>
             </div>
         </ContentHandler>
@@ -59,6 +60,16 @@ function getValidProject(related_content, lastShowedProject) {
     const lastPIndex = related_content.length - 1
     const indexOfCurr = related_content.indexOf(lastShowedProject)
     return indexOfCurr == lastPIndex ? related_content[0] : related_content[indexOfCurr + 1]
+}
+
+function Reviews(props) {
+    const content = props.content
+    const relatedContent = content.relatedContent
+    return (
+        <Section className="reviews">
+            <List items={relatedContent}/>
+        </Section>
+    )
 }
 
 function Footer(props) {

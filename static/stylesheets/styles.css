@@ -104,6 +104,50 @@ ul {
     animation: hide ease 0ms forwards;
 }
 
+.reviews {
+    background-color: #ffff59;
+}
+
+.reviews li {
+    position: relative;
+    width: 70%;
+    padding: 20px;
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    background-color: #ff80b0;
+}
+
+.reviews li:nth-child(even) {
+    left: 30%;
+}
+
+.reviews li .image-div {
+    display: inline-block;
+    vertical-align: top;
+    width: 5em;
+    height: 6.642em;
+    margin: 0em 1em 1em 0em;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.reviews li h2 {
+    margin-bottom: 0.3em;
+}
+
+.reviews li p {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 8em);
+    overflow-y: hidden;
+    padding: 1em;
+    border-radius: 20px;
+    background-color: #ffb6b9;
+}
+
 .footer {
     background-color: #0e9aa7;
 }
