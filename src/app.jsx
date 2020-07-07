@@ -31,32 +31,32 @@ function Projects(props) {
     return (
         <Section title={content.title} className="projects">
             <article>
-                <Slider/>
+                <Slider content={relatedContent}/>
             </article>
         </Section>
     )
 }
 
 function Slider(props) {
+    const firstSlide   = props.content[0]
     const showDuration = 4000, hideAnimationDur = 2000
     const style  = {"animationDuration": `${hideAnimationDur}ms`}
-    const [images, setImages] = React.useState(<BackgroundImage name={props.content[0].imageName} key={props.content[0].id} style={style}/>)
+    const initial = <BackgroundImage id={firstSlide.id} name={firstSlide.imageName} key={firstSlide.id} style={style}/>
+    const [images, setImages] = React.useState(initial)
     React.useEffect(() => {
-        setTimeout(showNext, showDuration + hideAnimationDur)
-    }, [])
+        if (!Array.isArray(images)) setTimeout(showNext, showDuration)
+    }, [images])
     function showNext() {
         const project = images.props
-        const next = getValidProject(relatedContent, project.key)
+        const next = getValidProject(props.content, project.id)
+        const nextImage = <BackgroundImage id={next.id} name={next.imageName} key={next.id} style={style}/>
         setImages(
             [
-                <BackgroundImage className="hide" name={project.name} key={project.key} style={style}/>,
-                <BackgroundImage name={next.imageName} key={next.id} style={style}/>
+                <BackgroundImage className="hide" name={project.name} key={project.id} style={style}/>,
+                nextImage
             ]
         )
-        setTimeout(() => {
-            setImages(images[1])
-        }, hideAnimationDur)
-        setTimeout(showNext, showDuration + hideAnimationDur)
+        setTimeout(() => setImages(nextImage), hideAnimationDur)
     }
     return (
         <div>
@@ -71,7 +71,11 @@ function getValidProject(related_content, lastShowedProject) {
     if (typeof lastShowedProject == "object")
         indexOfCurr = related_content.indexOf(lastShowedProject)
     else if (typeof +lastShowedProject == "number")
-        indexOfCurr = related_content.findIndex(val => val.id == lastShowedProject)
+        indexOfCurr = related_content.findIndex(val => {
+            console.log(val.id, lastShowedProject)
+            return val.id == lastShowedProject
+        })
+        console.log(indexOfCurr)
     return indexOfCurr == lastPIndex ? related_content[0] : related_content[indexOfCurr + 1]
 }
 
