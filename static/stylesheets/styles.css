@@ -78,6 +78,7 @@ ul {
     background-size: cover;
     background-position: center;
     border-radius: 50px;
+    animation: fade-in ease 0ms forwards;
     /* box-shadow: 0px 0px 30px 5px #ff80b0; */
 }
 
@@ -93,12 +94,12 @@ ul {
     border-radius: 70%;
     box-shadow: 0px 0px 3px 1px black;
 }
-
+/* 
 .projects article .new-img {
-    animation: fade-in ease 0ms forwards;
-}
+    
+} */
 
-.projects article .old-img {
+.projects article .image-div.hide {
     transform: translateY(30%);
     left: calc(50% - 25vw);
     animation: hide ease 0ms forwards;
@@ -113,6 +114,9 @@ ul {
         opacity: 0;
         left: calc(90% - 25vw);
         transform: scale(0.5);
+    }
+    30% {
+        opacity: 0;
     }
     100% {
         left: calc(50% - 25vw);
@@ -132,7 +136,7 @@ ul {
     100% {
         left: calc(10% - 25vw);
         opacity: 0;
-        transform: scale(0.6) translateY(0%);
+        transform: scale(0.5) translateY(0%);
     }
 
 }

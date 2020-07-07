@@ -28,36 +28,50 @@ function Intro(props) {
 function Projects(props) {
     const content = props.content || {}
     const relatedContent = content.relatedContent || []
-    const showDuration = 4000, hideAnimationDur = 2000
-    const [coming, setComing]     = React.useState(relatedContent[0])
-    const [outgoing, setOutgoing] = React.useState(null)
-    React.useEffect(() => {
-        setTimeout(showNext, showDuration + hideAnimationDur)
-    }, [coming])
-    function showNext() {
-        setOutgoing(coming)
-        setComing(getValidProject(relatedContent, coming))
-        setTimeout(() => setOutgoing(null), hideAnimationDur)
-    }
-    const style  = {"animationDuration": `${hideAnimationDur}ms`}
-    const newImg = <BackgroundImage className="new-img" name={coming.imageName} key={coming.id} style={style}/>,
-          oldImg = <BackgroundImage className="old-img" name={outgoing && outgoing.imageName} style={style}/>
     return (
         <Section title={content.title} className="projects">
             <article>
-                <div>
-                    <div className="layout"/>
-                    {outgoing && oldImg}
-                    {newImg}
-                </div>
+                <Slider/>
             </article>
         </Section>
     )
 }
 
+function Slider(props) {
+    const showDuration = 4000, hideAnimationDur = 2000
+    const style  = {"animationDuration": `${hideAnimationDur}ms`}
+    const [images, setImages] = React.useState(<BackgroundImage name={props.content[0].imageName} key={props.content[0].id} style={style}/>)
+    React.useEffect(() => {
+        setTimeout(showNext, showDuration + hideAnimationDur)
+    }, [])
+    function showNext() {
+        const project = images.props
+        const next = getValidProject(relatedContent, project.key)
+        setImages(
+            [
+                <BackgroundImage className="hide" name={project.name} key={project.key} style={style}/>,
+                <BackgroundImage name={next.imageName} key={next.id} style={style}/>
+            ]
+        )
+        setTimeout(() => {
+            setImages(images[1])
+        }, hideAnimationDur)
+        setTimeout(showNext, showDuration + hideAnimationDur)
+    }
+    return (
+        <div>
+            {images}
+        </div>
+    )    
+}
+
 function getValidProject(related_content, lastShowedProject) {
     const lastPIndex = related_content.length - 1
-    const indexOfCurr = related_content.indexOf(lastShowedProject)
+    let indexOfCurr = -1
+    if (typeof lastShowedProject == "object")
+        indexOfCurr = related_content.indexOf(lastShowedProject)
+    else if (typeof +lastShowedProject == "number")
+        indexOfCurr = related_content.findIndex(val => val.id == lastShowedProject)
     return indexOfCurr == lastPIndex ? related_content[0] : related_content[indexOfCurr + 1]
 }
 
