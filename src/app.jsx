@@ -72,10 +72,8 @@ function getValidProject(related_content, lastShowedProject) {
         indexOfCurr = related_content.indexOf(lastShowedProject)
     else if (typeof +lastShowedProject == "number")
         indexOfCurr = related_content.findIndex(val => {
-            console.log(val.id, lastShowedProject)
             return val.id == lastShowedProject
         })
-        console.log(indexOfCurr)
     return indexOfCurr == lastPIndex ? related_content[0] : related_content[indexOfCurr + 1]
 }
 
