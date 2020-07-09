@@ -8,23 +8,34 @@
         "title": "Cakes",
         "relatedContent": [
             {
+                "title": "Чизкейк",
+                "text": "Цена: 1200р",
                 "imageName": "1.jpg",
                 "id": 1
             },
             {
+                "title": "Шоколадный",
+                "text": "Цена: 1000р",
                 "imageName": "2.jpg",
                 "id": 2
-            },
-            {
-                "imageName": "1.jpg",
-                "id": 3
-            },
-            {
-                "imageName": "2.jpg",
-                "id": 4
             }
         ],
         "id": 2
+    },
+    "connection": {
+        "title": "Связь со мной",
+        "relatedContent": [
+            {
+                "url": "https://www.instagram.com/",
+                "title": "Инстаграм",
+                "id": 1
+            },
+            {
+                "url": "https://vk.com/",
+                "title": "Вконтакте",
+                "id": 2
+            }
+        ]
     },
     "reviews": {
         "title": "Отзывы",
@@ -47,10 +58,11 @@
                 "imageName": "review3.jpg",
                 "id": 3
             }
-        ]
+        ],
+        "id": 4
     },
     "footer": {
         "title": "Навигация",
-        "id": 4
+        "id": 5
     }
 }

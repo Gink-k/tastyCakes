@@ -26,6 +26,23 @@ p {}
     padding: 60px;
 }
 
+.section h1 {
+    display: inline-block;
+    font-size: 4em;
+    border-bottom: solid 4px #ff80b0;
+    margin-bottom: 1em;
+}
+
+.image-div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/*############################################################################ */
+/*############################################################################ */
+/*############################################################################ */
+
 .intro {
     min-height: 100vh;
     background-image: url(../images/intro_bg.jpg);
@@ -57,61 +74,156 @@ p {}
     padding: 0.5em;
 }
 
+/*############################################################################ */
+/*############################################################################ */
+/*############################################################################ */
+
 .projects {
-    min-height: 100vh;
+    min-height: 550px;
+    height: 100vh;
     background-color: #f6eec7;
     box-shadow: 0px -30px 30px 0px #f6eec7, 0px 30px 30px 0px #f6eec7;
+    overflow: hidden;
+    overflow-y: hidden;
 }
 
-.projects h1 {
-    display: inline-block;
-    font-size: 4em;
-    border-bottom: solid 4px #ff80b0;
+.projects article {
+    height: 100%;
 }
 
 .projects article > div {
     position: relative;
+    height: 100%;
 }
 
-.projects article .image-div {
+.projects article .slide {
     position: absolute;
-    top: 10%;
-    left: calc(90% - 200px);
+    left: calc(50% - 35vw - 1em);
+    padding: 2em;
+    width: 70vw;
+    border-radius: 20px;
+    /* box-shadow: 0px 0px 5px 1px black; */
+}
+
+/* .projects article .slide::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 60px;
+} */
+
+.projects .slide .image-div {
+    float: left;
     min-height: 200px;
     min-width: 200px;
-    height: 50vh;
-    width: 50vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    height: 60vh;
+    width: 30vw;
+    margin-right: 2em;
     border-radius: 50px;
+    z-index: 1;
     /* box-shadow: 0px 0px 30px 5px #ff80b0; */
 }
 
-.projects article .image-div::after {
+.projects .slide .text {
+    padding-top: 18vh;
+    font-size: 3em;
+    word-break: normal;
+}
+
+.projects .text h2 {
+    color: #0e9aa7;
+    display: inline-block;
+}
+
+/* 
+.projects .slide .image-div::after {
     content: "";
     position: absolute;
     bottom: -15%;
-    left: calc(50% - 22.5vw);
+    left: calc(50% - 12.5vw);
     background-color: black;
     opacity: 0.7;
-    width: 45vw;
+    width: 25vw;
     height: 5px;
     border-radius: 70%;
     box-shadow: 0px 0px 3px 1px black;
-}
+} */
 
-.projects article .new-img {
+.projects article .new-slide {
     animation: fade-in ease 0ms forwards;
 }
 
-.projects article .old-img {
-    transform: translateY(30%);
+.projects article .old-slide {
+    z-index: 0;
+    transform: translateY(20%);
     left: calc(50% - 25vw);
     animation: hide ease 0ms forwards;
 }
 
+/*############################################################################ */
+/*############################################################################ */
+/*############################################################################ */
+
+
+.connection {
+}
+
+.connection ul {
+    /* border: 10px solid #0e9aa7; */
+    position: relative;
+    left: calc(10% - 30px);
+    width: 80%;
+    font-size: 2em;
+    padding: 1em;
+    border-radius: 20px;
+    background-color: #0e9aa7;
+    box-shadow: 0px 0px 10px 0px #0e9aa7;
+}
+
+.connection li {
+    padding-bottom: 2em;
+}
+
+.connection li:last-child {
+    padding-bottom: 0;
+}
+
+.connection li p {
+    display: inline-block;
+    padding-left: 1em;
+}
+
+.connection li .social-svg-icon {
+    fill: white !important;
+}
+
+.connection > div {
+    position: relative;
+    width: 100%;
+    height: 60px;
+}
+
+.connection > div .cake {
+    position: absolute;
+    right: calc(25% - 512px * 0.6);
+    top: calc(-512px * 0.6);
+    width: 512px;
+    height: 512px;
+    background-size: contain;
+    transform: rotateZ(-25deg) scale(0.6);
+}
+
+/*############################################################################ */
+/*############################################################################ */
+/*############################################################################ */
+
 .reviews {
+    z-index: -1;
+    background-image: linear-gradient(to bottom, white 20%, #9399ff 20%, #9399ff 80%, white 80%, white 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .reviews li {
@@ -122,7 +234,8 @@ p {}
     font-size: 1.4em;
     margin-bottom: 40px;
     border-radius: 20px;
-    background-color: #ff80b0;
+    background-color: #ffb6b9;
+    z-index: 1;
 }
 
 .reviews li:nth-child(even) {
@@ -136,9 +249,6 @@ p {}
     height: 6.642em;
     margin: 0em 1em 1em 0em;
     border-radius: 20px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 }
 
 .reviews li h2 {
@@ -150,10 +260,28 @@ p {}
     vertical-align: top;
     font-size: 24px;
     width: calc(100% - 8em); /* 2em padding, 6em .image-div width and margin*/
-    overflow-y: hidden;
+    overflow-x: hidden;
     padding: 1em;
     border-radius: 20px;
-    background-color: #ffb6b9;
+    background-color: #f4dada;
+}
+
+.reviews .reviews-bg-wrap {
+    position: relative;
+}
+
+.reviews .reviews-bg {
+    position: absolute;
+    width: calc(100% - 120px);
+    height: 200px;
+}
+
+.reviews .reviews-bg .cake{
+    position: absolute;
+    z-index: 0;
+    width: 512px;
+    height: 512px;
+    background-size: contain;
 }
 
 .footer {
@@ -164,18 +292,18 @@ p {}
     0% {
         opacity: 0;
         left: calc(90% - 25vw);
-        transform: scale(0.5);
+        transform: scale(0.5) translateY(-40%);
     }
     100% {
         left: calc(50% - 25vw);
         opacity: 1;
-        transform: scale(1) translateY(30%);
+        transform: scale(1) translateY(0%);
     }
 }
 
 @keyframes hide {
     0% {
-        transform: translateY(30%);
+        transform: translateY(0%);
         left: calc(50% - 25vw);
     }
     70% {
@@ -184,7 +312,7 @@ p {}
     100% {
         left: calc(10% - 25vw);
         opacity: 0;
-        transform: scale(0.6) translateY(0%);
+        transform: scale(0.6) translateY(-40%);
     }
 
 }
