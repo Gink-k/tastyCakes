@@ -55,7 +55,7 @@ export function Article(props) {
     )
 }
 
-export function Image(props) {
+export function CustomImage(props) {
     const {name, className, ...rest} = props
     return <img src={IMAGE_STORAGE + name} className={className} {...rest}/>
 }
@@ -86,6 +86,16 @@ export function useResponse(path) {
         )
     }, [])
     return [content, isLoaded, error] 
+}
+
+export function usePreloadImages(objects) {
+    const preloadedImages = React.useRef()
+    preloadedImages.current = []
+    React.useEffect(() => objects.forEach((val) => {
+        const pImage = new Image()
+        pImage.src = IMAGE_STORAGE + val.imageName
+        preloadedImages.current.push(pImage)
+    }), [])
 }
 
 export function ContentHandler(props) {
