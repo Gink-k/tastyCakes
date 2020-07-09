@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import {List, ListItem, LinkListItem, ContentHandler, Article, Image, BackgroundImage, useResponse} from "./base"
+import {List, ListItem, LinkListItem, ContentHandler, Article, BackgroundImage, IMAGE_STORAGE, useResponse} from "./base"
 
 function App(props) {
     const [response, isLoaded, error] = useResponse("./static/main.json")
@@ -29,30 +29,37 @@ function Intro(props) {
 function Projects(props) {
     const content = props.content || {}
     const relatedContent = content.relatedContent || []
+    return (
+        <Section title={content.title} className="projects">
+            <article>
+                <Slider content={relatedContent}/>
+            </article>
+        </Section>
+    )
+}
+
+function Slider(props) {
+    const content = props.content
     const showDuration = 4000, hideAnimationDur = 2000
-    const [coming, setComing]     = React.useState(relatedContent[0])
+    const [coming, setComing]     = React.useState(content[0])
     const [outgoing, setOutgoing] = React.useState(null)
+    React.useEffect(() => content.forEach((val) => new Image().src = IMAGE_STORAGE + val.imageName), [])
     React.useEffect(() => {
         setTimeout(showNext, showDuration + hideAnimationDur)
     }, [coming])
     function showNext() {
         setOutgoing(coming)
-        setComing(getValidProject(relatedContent, coming))
+        setComing(getValidProject(content, coming))
         setTimeout(() => setOutgoing(null), hideAnimationDur)
     }
     const style  = {"animationDuration": `${hideAnimationDur}ms`}
     const newImg = <BackgroundImage className="new-img" name={coming.imageName} key={coming.id} style={style}/>,
           oldImg = <BackgroundImage className="old-img" name={outgoing && outgoing.imageName} style={style}/>
     return (
-        <Section title={content.title} className="projects">
-            <article>
-                <div>
-                    <div className="layout"/>
-                    {outgoing && oldImg}
-                    {newImg}
-                </div>
-            </article>
-        </Section>
+        <div>
+            {outgoing && oldImg}
+            {newImg}
+        </div>
     )
 }
 
