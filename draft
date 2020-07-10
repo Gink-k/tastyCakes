@@ -1,0 +1,33 @@
+function Slider(props) {
+    const content = props.content
+    const showDuration = 4000, hideAnimationDur = 2000
+    const [coming, setComing]     = React.useState(content[0])
+    const [outgoing, setOutgoing] = React.useState(null)
+    const [onScreen, setOnScreen] = React.useState(false)
+    usePreloadImages(content)
+    React.useEffect(() => {
+        if (onScreen) setTimeout(showNext, showDuration + hideAnimationDur)
+    }, [coming, onScreen])
+
+    function showNext() {
+        setOutgoing(coming)
+        setComing(getValidProject(content, coming))
+        setTimeout(() => setOutgoing(null), hideAnimationDur)
+    }
+    const checkOnScreen = React.useCallback((node) => {
+        if (node !== null) 
+            window.addEventListener("scroll", () => {
+                if (onWindow(node)) setOnScreen(true)
+                else setOnScreen(false)
+            })
+    }, [])
+    const style  = {"animationDuration": `${hideAnimationDur}ms`}
+    const newImg = <Slide className="new-slide" content={coming} key={coming.id} style={style}/>,
+          oldImg = <Slide className="old-slide" content={outgoing && outgoing} style={style}/>
+    return (
+        <div ref={checkOnScreen}>
+            {outgoing && oldImg}
+            {newImg}
+        </div>
+    )
+}
