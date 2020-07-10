@@ -312,10 +312,10 @@ a {
         font-size: 1.6em;
         width: calc(100% - 5.8em);
     }
-
+    
     .reviews-bg .cake:first-child {
-        bottom: 600% !important;
-        right: -30% !important;
+        bottom: 610% !important;
+        right: -18% !important;
     }
     .reviews-bg .cake:last-child {
         bottom: -45% !important;
