@@ -34,6 +34,11 @@
                 "url": "https://vk.com/",
                 "title": "Вконтакте",
                 "id": 2
+            },
+            {
+                "url": "https://whatsapp.com/",
+                "title": "Ватсапп",
+                "id": 3
             }
         ]
     },
@@ -62,7 +67,7 @@
         "id": 4
     },
     "footer": {
-        "title": "Навигация",
+        "title": "Developed by React / Author Gink-k.",
         "id": 5
     }
 }
