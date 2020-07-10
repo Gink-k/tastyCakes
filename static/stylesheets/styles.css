@@ -19,6 +19,10 @@ h1, h2 {
 
 p {}
 
+a {
+    text-decoration: none;
+}
+
 .section {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -37,6 +41,12 @@ p {}
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+@media all and (max-device-width: 580px) {
+    .section h1 {
+        font-size: 5em;
+    }
 }
 
 /*############################################################################ */
@@ -74,6 +84,19 @@ p {}
     padding: 0.5em;
 }
 
+@media all and (max-device-width: 580px) {
+    .intro {
+        text-align: center;
+    }
+    .intro article{
+        float: none;
+        display: inline-block;
+        font-size: 5em;
+        margin-right: 0px;
+        text-align: left;
+    }
+}
+
 /*############################################################################ */
 /*############################################################################ */
 /*############################################################################ */
@@ -105,15 +128,6 @@ p {}
     /* box-shadow: 0px 0px 5px 1px black; */
 }
 
-/* .projects article .slide::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    height: 60px;
-} */
-
 .projects .slide .image-div {
     float: left;
     min-height: 200px;
@@ -137,20 +151,6 @@ p {}
     display: inline-block;
 }
 
-/* 
-.projects .slide .image-div::after {
-    content: "";
-    position: absolute;
-    bottom: -15%;
-    left: calc(50% - 12.5vw);
-    background-color: black;
-    opacity: 0.7;
-    width: 25vw;
-    height: 5px;
-    border-radius: 70%;
-    box-shadow: 0px 0px 3px 1px black;
-} */
-
 .projects article .new-slide {
     animation: fade-in ease 0ms forwards;
 }
@@ -160,6 +160,19 @@ p {}
     transform: translateY(20%);
     left: calc(50% - 25vw);
     animation: hide ease 0ms forwards;
+}
+
+@media all and (max-device-width: 580px) {
+    .projects .slide .image-div {
+        float: none;
+        width: 100%;
+        transform: translateX(-20%);
+    }
+    .projects .slide .text {
+        padding-top: 1em;
+        text-align: center;
+        transform: translateX(-20%);
+    }
 }
 
 /*############################################################################ */
@@ -183,6 +196,8 @@ p {}
 }
 
 .connection li {
+    display: inline-block;
+    margin-right: 2em;
     padding-bottom: 2em;
 }
 
@@ -190,13 +205,15 @@ p {}
     padding-bottom: 0;
 }
 
-.connection li p {
+.connection li a:last-child {
     display: inline-block;
-    padding-left: 1em;
+    padding-left: 0.5em;
+    font-size: 1.5em;
 }
 
-.connection li .social-svg-icon {
-    fill: white !important;
+.connection li a:last-child:hover, .connection li a:last-child:target, 
+.connection li a:last-child:link, .connection li a:last-child:visited {
+    color: black
 }
 
 .connection > div {
@@ -272,7 +289,7 @@ p {}
 
 .reviews .reviews-bg {
     position: absolute;
-    width: calc(100% - 120px);
+    width: 100%;
     height: 200px;
 }
 
@@ -284,7 +301,30 @@ p {}
     background-size: contain;
 }
 
+@media all and (max-device-width: 580px) {
+    .reviews li {
+        box-sizing: border-box;
+        left: 0% !important;
+        font-size: 2em;
+        width: 100%;
+    }
+    .reviews li p { 
+        font-size: 1.6em;
+        width: calc(100% - 5.8em);
+    }
+
+    .reviews-bg .cake:first-child {
+        bottom: 600% !important;
+        right: -30% !important;
+    }
+    .reviews-bg .cake:last-child {
+        bottom: -45% !important;
+        right: -15% !important;
+    }
+}
+
 .footer {
+    font-size: 1.5em;
     background-color: #0e9aa7;
 }
 

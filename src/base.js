@@ -2,6 +2,24 @@ import React from "react"
 
 export const IMAGE_STORAGE = "./static/images/"
 
+export function Section(props) {
+    const {className, title, children, _ref, ...rest} = props
+    const header = title && <h1>{props.title}</h1>
+    const sectionRef = React.useCallback((section) => {
+        if (section !== null) {
+            if (window.location.hash == "#" + className) section.scrollIntoView()
+            if (typeof _ref == "function") _ref(section)
+        }
+    }, [])
+    return (
+        <section className={className + " section"} id={className} ref={sectionRef} {...rest}>
+            {header}
+            {children}
+        </section>
+    )
+}
+
+
 export function Logo(props) {
     return (
         <h1 className="link-logo"><a href="/">WGarden</a></h1>

@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { SocialIcon } from 'react-social-icons';
-import {List, ListItem, LinkListItem, 
+import {Section, List, ListItem, LinkListItem, 
         ContentHandler, Article, BackgroundImage, 
         useResponse, usePreloadImages} from "./base"
 
@@ -98,8 +98,8 @@ function SocialsContainer(props) {
     const content = props.content
     return (
         <li>
-            <SocialIcon url={content.url} style={{ height: "4em", width: "4em" }}/>
-            <p>{content.url}</p>
+            <SocialIcon url={content.url} fgColor="#fff" style={{ height: "4em", width: "4em" }}/>
+            <a href={content.url}>{content.title}</a>
         </li>
     )
 }
@@ -139,30 +139,8 @@ function Footer(props) {
     const content = props.content || {}
     return (
         <footer className="footer section" id="footer">
-            {content.title}
+            <h2>{content.title}</h2>
         </footer>
-    )
-}
-
-function RawLink(props) {
-    const {children, ...rest} = props
-    return <a {...rest}>{children}</a>
-}
-
-function Section(props) {
-    const {className, title, children, _ref, ...rest} = props
-    const header = title && <h1>{props.title}</h1>
-    const sectionRef = React.useCallback((section) => {
-        if (section !== null) {
-            if (window.location.hash == "#" + className) section.scrollIntoView()
-            if (typeof _ref == "function") _ref(section)
-        }
-    }, [])
-    return (
-        <section className={className + " section"} id={className} ref={sectionRef} {...rest}>
-            {header}
-            {children}
-        </section>
     )
 }
 
